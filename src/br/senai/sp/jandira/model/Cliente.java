@@ -3,9 +3,8 @@ package br.senai.sp.jandira.model;
 public class Cliente {
 	private String nome;
 	private String email;
-	private String salario;
-	
-	
+	private double salario;
+
 	// set - get
 	public String getNome() {
 		return nome;
@@ -23,11 +22,11 @@ public class Cliente {
 		this.email = email;
 	}
 	
-	public String getSalario() {
+	public double getSalario() {
 		return salario;
 	}
 	
-	public void setSalario(String salario) {
+	public void setSalario(double salario) {
 		this.salario = salario;
 	}
 }

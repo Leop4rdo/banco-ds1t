@@ -3,8 +3,8 @@ package br.senai.sp.jandira.model;
 import br.senai.sp.jandira.lista.TipoConta;
 
 public class Conta {
-	public Cliente titular;
-	private String numeroAgencia;
+	private Cliente cliente;
+	private Agencia agencia;
 	private TipoConta tipo;
 	private String numero;
 	private double saldo;
@@ -15,6 +15,22 @@ public class Conta {
 	}
 	
 	// set-get
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+	
+	public Agencia getAgencia() {
+		return agencia;
+	}
+
+	public void setAgencia(Agencia agencia) {
+		this.agencia = agencia;
+	}
+	
 	public TipoConta getTipo() {
 		return tipo;
 	}
@@ -22,19 +38,11 @@ public class Conta {
 	public void setTipo(TipoConta tipo) {
 		this.tipo = tipo;
 	}
-	
-	public String getNumeroAgencia() {
-		return numeroAgencia;
-	}
-
-	public void setNumeroAgencia(String numeroAgencia) {
-		this.numeroAgencia = numeroAgencia;
-	}
 
 	// Metodos comportamentais/especificos
 	public void depositar(double valorDeposito) {
 		System.out.println("Depositando R$" + valorDeposito + " na "
-						+ "\nconta de " + titular + "...\n");
+						+ "\nconta de " + this.cliente.getNome() + "...\n");
 		
 		if (valorDeposito < 0) {
 			System.out.println("Valor incorreto!"
@@ -49,7 +57,7 @@ public class Conta {
 
 	public boolean sacar(double valorSaque) {
 		System.out.println("Sacando R$" + valorSaque + " na conta "
-						+ "\nde " + titular + "...\n");
+						+ "\nde " + this.cliente.getNome() + "...\n");
 		
 		if (valorSaque < 0) {
 			System.out.println("Valor incorreto!"
@@ -70,7 +78,7 @@ public class Conta {
 	
 	public void transferir(Conta contaDestino, double valorTransferencia) {
 		System.out.println("Transferindo R$" + valorTransferencia + " da "
-					+ "\nconta de " + titular + "\npara a conta de \n" + contaDestino.titular + "...\n");
+					+ "\nconta de " + this.cliente.getNome() + "\npara a conta de \n" + contaDestino.getCliente().getNome() + "...\n");
 		
 		boolean resultado = this.sacar(valorTransferencia);
 		
@@ -83,9 +91,9 @@ public class Conta {
 	
 	public void exibirDetalhes() {
 		System.out.println("--------------------------");
-		System.out.printf("Titular: %s\n", titular);
+		System.out.printf("Titular: %s\n", this.cliente.getNome());
 		System.out.printf("Número: %s\n", numero);
-		System.out.printf("Agência: %s\n", numeroAgencia);
+		System.out.printf("Agência: %s\n", agencia.getNumero());
 		System.out.printf("Tipo: %s\n", tipo);
 		System.out.printf("Saldo: %s\n", saldo);
 		System.out.println("--------------------------\n");
